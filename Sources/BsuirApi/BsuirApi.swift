@@ -7,7 +7,7 @@ extension RequestsManager {
     }
 }
 
-public enum BsuirApi {
+public enum BsuirTargets {
 
     public enum Agent {
         case groupName(String)
@@ -98,7 +98,7 @@ private extension RequestsManager {
     }()
 }
 
-private extension BsuirApi.Agent {
+private extension BsuirTargets.Agent {
 
     var parameters: [String: String] {
         switch self {
