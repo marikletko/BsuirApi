@@ -50,7 +50,7 @@ extension WeekNum : Codable {
         case invalidValue(Int)
     }
     public init(from decoder: Decoder) throws {
-        var container = try decoder.unkeyedContainer()
+        let container = try decoder.singleValueContainer()
         if let values = try? container.decode([Int].self) {
             self = WeekNum(weekNums: values)
         } else {
@@ -61,7 +61,7 @@ extension WeekNum : Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.unkeyedContainer()
+        var container = encoder.singleValueContainer()
         guard self != .always else {
             try container.encode([0])
             return
