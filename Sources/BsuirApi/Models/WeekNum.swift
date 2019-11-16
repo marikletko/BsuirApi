@@ -14,14 +14,14 @@ public struct WeekNum : OptionSet {
         self.rawValue = rawValue
     }
     
-    static let first  = WeekNum(rawValue: 1 << 0)
-    static let second = WeekNum(rawValue: 1 << 1)
-    static let third  = WeekNum(rawValue: 1 << 2)
-    static let forth  = WeekNum(rawValue: 1 << 3)
+    public static let first  = WeekNum(rawValue: 1 << 0)
+    public static let second = WeekNum(rawValue: 1 << 1)
+    public static let third  = WeekNum(rawValue: 1 << 2)
+    public static let forth  = WeekNum(rawValue: 1 << 3)
     
-    static let oddWeeks:  WeekNum = [first, third]
-    static let evenWeeks: WeekNum = [second, forth]
-    static let always:    WeekNum = [oddWeeks, evenWeeks]
+    public static let oddWeeks:  WeekNum = [first, third]
+    public static let evenWeeks: WeekNum = [second, forth]
+    public static let always:    WeekNum = [oddWeeks, evenWeeks]
 }
 
 extension WeekNum {
