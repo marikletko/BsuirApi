@@ -12,8 +12,6 @@ public struct Employee: Codable, Equatable {
     public let id: Int
     public let calendarID: String?
 
-    public var department: [String] { return academicDepartment ?? [] }
-
     public let firstName: String
     public let middleName: String
     public let lastName: String
@@ -26,5 +24,5 @@ public struct Employee: Codable, Equatable {
         public let examSchedules: [DaySchedule]?
     }
 
-    private let academicDepartment: [String]?
+    @NonEmpty public var academicDepartment: [String]
 }

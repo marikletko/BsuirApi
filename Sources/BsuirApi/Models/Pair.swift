@@ -10,11 +10,10 @@ import Foundation
 public struct Pair : Codable, Equatable {
 
     public enum Form : String, Equatable {
-        case lecture  = "лк"
-        case practice = "пз"
-        case lab      = "лр"
-        case exam     = "экзамен"
-        case unknown
+        case lecture  = "ЛК"
+        case practice = "ПЗ"
+        case lab      = "ЛР"
+        case exam     = "Экзамен"
     }
 
     public struct Time : Equatable {
@@ -24,19 +23,19 @@ public struct Pair : Codable, Equatable {
     }
 
     public let subject: String
-    public let auditory: [String]
+    @NonEmpty public var auditory: [String]
 
     public let startLessonTime: Time
     public let endLessonTime: Time
 
     public let numSubgroup: Int
-    public let lessonType: Form
+    @Unknownable public var lessonType: Form?
     public let weekNumber: WeekNum
     public let note: String?
 
     public let zaoch: Bool
 
-    public let employee: [Employee]
+    @NonEmpty public var employee: [Employee]
 }
 
 extension Pair.Time : Codable {
@@ -62,19 +61,5 @@ extension Pair.Time : Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode("\(hour):\(minute)")
-    }
-}
-
-extension Pair.Form : Codable {
-
-    public init(from decoder: Decoder) throws {
-        let value = try decoder.singleValueContainer().decode(String.self)
-        self = Pair.Form(rawValue: value.lowercased()) ?? .unknown
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        guard self != .unknown else { return }
-        try container.encode(rawValue)
     }
 }

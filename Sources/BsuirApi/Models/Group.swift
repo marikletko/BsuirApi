@@ -18,7 +18,7 @@ public struct Group: Codable, Equatable {
 
     public struct Schedule: Codable, Equatable {
         public let studentGroup: Group
-        public let schedules: [DaySchedule]
-        public let examSchedules: [DaySchedule]
+        @NonEmpty public var schedules: [DaySchedule]
+        @NonEmpty public var examSchedules: [DaySchedule]
     }
 }
